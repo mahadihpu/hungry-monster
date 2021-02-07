@@ -9,8 +9,7 @@ fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${keyword}`)
 const itemsDisplay = document.getElementById("items-display");
 itemsDisplay.innerHTML = null;
 const showData = meal => {
-    for(let i=0;i<meal.meals.length;i++){
-        const oneMeal = meal.meals[i];
+    meal.meals.forEach(oneMeal => {
         const itemDisplay = document.createElement("div");
         itemDisplay.className = "card bg-light";
         itemDisplay.style="width: 18rem;";
@@ -23,7 +22,7 @@ const showData = meal => {
         `
         itemDisplay.innerHTML = itemInfo;
         itemsDisplay.appendChild(itemDisplay);
-    }
+    });
     
 }
 })
@@ -38,8 +37,7 @@ const showDetails = item =>{
     .then(data => renderInformation(data))
 
     const renderInformation = item =>{
-        for(let i = 0; i< item.meals.length;i++){
-            const itemDetail = item.meals[i];
+        item.meals.forEach(itemDetail => {
             const itemDisplay = document.createElement("div");
             itemDisplay.className = "card-details bg-light mx-auto";
             itemDisplay.style="width: 18rem;";
@@ -59,7 +57,7 @@ const showDetails = item =>{
             `
             itemDisplay.innerHTML = itemInfo;
             displayDetails.appendChild(itemDisplay);
-        }
+        });
     }
 
 
